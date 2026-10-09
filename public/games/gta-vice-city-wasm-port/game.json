@@ -1,0 +1,12 @@
+{
+  "title": "GTA: Vice City — WASM Port",
+  "screenshot": "demo.webp",
+  "genre": "Action",
+  "description": "Play GTA: Vice City right in your browser. Nothing to install: the game runs on your own device and keeps working offline.",
+  "creator": {
+    "name": "Jonathan Peña",
+    "social": "https://github.com/joncodeofficial"
+  },
+  "website": "https://joncodeofficial.github.io/gta-vice-city-wasm/",
+  "type": "clone"
+}

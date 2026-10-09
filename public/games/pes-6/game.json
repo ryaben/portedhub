@@ -1,0 +1,12 @@
+{
+  "title": "PES 6 Web Online",
+  "screenshot": "screenshot.jpg",
+  "genre": "Football",
+  "description": "PES 6 Web Online es Pro Evolution Soccer 6 de PSP recompilado a WebAssembly para correr directo en tu navegador, sin instalar nada. Soporta mando, pantalla táctil, partidas guardadas, option files y partidos online contra otros jugadores.",
+  "creator": {
+    "name": "Optijuegos",
+    "social": "https://www.youtube.com/@OptiProjects"
+  },
+  "website": "https://pes6.optijuegos.net/",
+  "type": "clone"
+}

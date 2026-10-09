@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #05070b;
+  --bg-secondary: #121821;
+  --bg-tertiary: #1d2430;
+  --bg-card: #171c27;
+  --text-primary: #f5f7fb;
+  --text-secondary: #d6d9df;
+  --text-muted: #9aa3b2;
+  --accent-primary: #e11d2d;
+  --accent-secondary: #dfe4ea;
+  --accent-tertiary: #ff8a3d;
+  --accent-quaternary: #f7b3c4;
+  --border-color: #323b4a;
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --button-brand-bg: linear-gradient(135deg, #d9102d 0%, #7b7f89 100%);
+  --button-brand-text: #ffffff;
+  --gradient-1: linear-gradient(135deg, #070b12 0%, #171f2c 38%, #0b0e14 100%);
+  --gradient-2: linear-gradient(135deg, #ff2a3a 0%, #dfe4ea 42%, #9aa4b1 100%);
+  --gradient-3: linear-gradient(135deg, #ff8a3d 0%, #ff4d6d 100%);
+}
+
+[data-theme='light'] {
+  --bg-primary: #f5f3f1;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e8ebee;
+  --bg-card: #ffffff;
+  --text-primary: #1b1d21;
+  --text-secondary: #4c5868;
+  --text-muted: #77808d;
+  --accent-primary: #d9102d;
+  --accent-secondary: #dfe4ea;
+  --accent-tertiary: #f28b3d;
+  --accent-quaternary: #f4bfd0;
+  --border-color: #dfe3ea;
+  --shadow-color: rgba(18, 24, 33, 0.12);
+  --button-brand-bg: linear-gradient(135deg, #d9102d 0%, #ccd4dd 100%);
+  --button-brand-text: #111827;
+  --gradient-1: linear-gradient(135deg, #f9f6f4 0%, #efe7e8 28%, #ebeef1 100%);
+  --gradient-2: linear-gradient(135deg, #e9122f 0%, #e7edf5 42%, #bcc5cf 100%);
+  --gradient-3: linear-gradient(135deg, #f6a15a 0%, #f46a73 100%);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-secondary) var(--bg-secondary);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--accent-secondary);
+  border-radius: 4px;
+}

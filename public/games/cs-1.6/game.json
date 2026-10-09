@@ -1,0 +1,11 @@
+{
+  "title": "Counter-Strike 1.6",
+  "screenshot": "screenshot.jpg",
+  "genre": "First-Person Shooter",
+  "description": "A Counter-Strike 1.6 browser port featuring classic maps and bot matches.",
+  "creator": {
+    "name": "Unknown"
+  },
+  "website": "https://cs.dphn.ai/",
+  "type": "clone"
+}

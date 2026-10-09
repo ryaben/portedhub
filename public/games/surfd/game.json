@@ -1,0 +1,12 @@
+{
+  "title": "Surfd",
+  "screenshot": "surfd.jpg",
+  "genre": "Platforms",
+  "description": "counter-strike surf in your browser just got multiplayer. The movement & physics feel SO close to the original that i keep forgetting i'm in a browser. Come surf the web. 🏄‍♂️",
+  "creator": {
+    "name": "0yield",
+    "social": "https://x.com/0yield"
+  },
+  "website": "https://surfd.net/",
+  "type": "clone"
+}

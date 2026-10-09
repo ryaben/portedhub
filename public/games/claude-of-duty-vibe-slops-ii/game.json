@@ -1,0 +1,12 @@
+{
+  "title": "Claude of Duty: Vibe Slops II",
+  "screenshot": "image.webp",
+  "genre": "First-Person Shooter",
+  "description": "A browser-based Three.js first-person shooter played on the Black Ops II Hijacked map export, with capsule collision and a baked Recast navigation mesh.",
+  "creator": {
+    "name": "Luckey Faraday",
+    "social": "https://github.com/luckeyfaraday"
+  },
+  "website": "https://vibeslops.luckeysystems.com/",
+  "type": "clone"
+}

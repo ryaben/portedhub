@@ -1,0 +1,12 @@
+{
+  "title": "The Simpsons: Hit & Run - WASM",
+  "screenshot": "shar.png",
+  "genre": "Action",
+  "description": "The Simpsons: Hit & Run is a 2003 action-adventure game developed by Radical Entertainment and published by Vivendi Universal Games. It is based on the American animated television series The Simpsons, and is the 22nd installment in The Simpsons series of video games.",
+  "creator": {
+    "name": "cjoseph",
+    "social": "https://news.ycombinator.com/user?id=calebj0seph"
+  },
+  "website": "https://shar-wasm.cjoseph.workers.dev/?skipmovie",
+  "type": "clone"
+}

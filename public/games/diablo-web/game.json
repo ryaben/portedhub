@@ -1,0 +1,12 @@
+{
+  "title": "Diablo Web",
+  "screenshot": "diablo.png",
+  "genre": "Strategy",
+  "description": "Play the original Diablo in your browser.",
+  "creator": {
+    "name": "Nikita Maksimov",
+    "social": "https://github.com/JohnImril"
+  },
+  "website": "https://johnimril.github.io/diablo_web/",
+  "type": "clone"
+}
