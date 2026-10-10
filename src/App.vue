@@ -47,6 +47,33 @@
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
           </button>
+          <div class="nav-contact-links">
+            <a
+              href="https://x.com/portedhub"
+              class="nav-contact-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="PortedHub on X"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path
+                  d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.4L1.8 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"
+                />
+              </svg>
+              <span>@portedhub</span>
+            </a>
+            <a
+              href="mailto:portedhub@gmail.com"
+              class="nav-contact-link"
+              aria-label="Email PortedHub"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M3 5h18v14H3z" />
+                <path d="m3 6 9 7 9-7" />
+              </svg>
+              <span>portedhub@gmail.com</span>
+            </a>
+          </div>
         </div>
       </div>
     </nav>
@@ -104,6 +131,48 @@ const { currentTheme, toggleTheme } = useTheme();
   gap: 1rem;
 }
 
+.nav-contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nav-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.nav-contact-link:hover {
+  color: var(--accent-primary);
+}
+
+.nav-contact-link:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.nav-contact-link svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: currentColor;
+}
+
+.nav-contact-link:last-child svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .nav-link {
   color: var(--text-primary);
   text-decoration: none;
@@ -147,5 +216,42 @@ const { currentTheme, toggleTheme } = useTheme();
 
 .theme-toggle:hover svg {
   transform: rotate(180deg);
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-logo-image {
+    width: min(42vw, 200px);
+    height: auto;
+  }
+
+  .nav-right {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .nav-contact-links {
+    gap: 0.15rem;
+  }
+
+  .nav-contact-link {
+    justify-content: center;
+    padding: 0.1rem;
+  }
+
+  .nav-contact-link span {
+    display: none;
+  }
+
+  .nav-contact-link svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 </style>
