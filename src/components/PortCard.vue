@@ -1,12 +1,14 @@
 <template>
-  <div class="port-card">
-    <div class="port-screenshot">
+  <div class="port-card" :class="{ 'port-card-list': displayMode === 'list' }">
+    <div v-if="displayMode === 'card'" class="port-screenshot">
       <img :src="port.screenshot" :alt="port.title" />
     </div>
     <div class="port-info">
       <h3 class="port-title">{{ port.title }}</h3>
       <p class="port-genre">{{ port.genre }}</p>
-      <p class="port-description">{{ port.description }}</p>
+      <p v-if="displayMode === 'card'" class="port-description">
+        {{ port.description }}
+      </p>
 
       <div class="port-details">
         <div class="port-header">
@@ -43,6 +45,11 @@ export default {
     port: {
       type: Object,
       required: true
+    },
+    displayMode: {
+      type: String,
+      default: 'card',
+      validator: (value) => ['card', 'list'].includes(value)
     }
   }
 }
@@ -64,6 +71,10 @@ export default {
   border-color: var(--accent-primary);
 }
 
+.port-card-list:hover {
+  transform: translateY(-2px);
+}
+
 .port-screenshot {
   aspect-ratio: 16/9;
   overflow: hidden;
@@ -82,11 +93,11 @@ export default {
 }
 
 .port-info {
-  padding: 1.75rem;
+  padding: 1.25rem;
 }
 
 .port-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin: 0 0 0.5rem 0;
   color: var(--text-primary);
   font-weight: 800;
@@ -96,25 +107,60 @@ export default {
 .port-genre {
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
   font-weight: 500;
 }
 
 .port-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .port-details {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--border-color);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.75rem;
+}
+
+.port-card-list .port-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.port-card-list .port-title,
+.port-card-list .port-genre {
+  margin: 0;
+}
+
+.port-card-list .port-details {
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.port-card-list .port-header {
+  gap: 0.5rem;
+}
+
+.port-card-list .badge {
+  padding: 0.3rem 0.65rem;
+}
+
+.port-card-list .play-button {
+  white-space: nowrap;
 }
 
 .port-header {
@@ -199,5 +245,21 @@ export default {
 .play-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(217, 16, 45, 0.35);
+}
+
+@media (max-width: 900px) {
+  .port-card-list .port-details {
+    flex-basis: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 560px) {
+  .port-card-list .port-details {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
 </style>
