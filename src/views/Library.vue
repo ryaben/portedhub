@@ -51,27 +51,90 @@
         <h2>Library</h2>
         <div class="results-controls">
           <p class="results-count">{{ filteredPorts.length }} ports found</p>
-          <div class="entries-per-page">
-            <label for="entriesPerPage">Show:</label>
-            <select
-              id="entriesPerPage"
-              v-model="itemsPerPage"
-              @change="currentPage = 1"
+          <div class="display-controls">
+            <div class="entries-per-page">
+              <label for="entriesPerPage">Show:</label>
+              <select
+                id="entriesPerPage"
+                v-model="itemsPerPage"
+                @change="currentPage = 1"
+              >
+                <option :value="6">6</option>
+                <option :value="12">12</option>
+                <option :value="24">24</option>
+                <option :value="48">48</option>
+              </select>
+            </div>
+            <label
+              v-if="displayMode === 'card'"
+              class="card-size-control"
+              for="cardSize"
             >
-              <option :value="6">6</option>
-              <option :value="12">12</option>
-              <option :value="24">24</option>
-              <option :value="48">48</option>
-            </select>
+              <span>Card size</span>
+              <input
+                id="cardSize"
+                :value="cardSize"
+                type="range"
+                min="220"
+                max="440"
+                step="5"
+                aria-label="Card width"
+                :aria-valuetext="`${cardSize} pixels`"
+                @input="cardSize = Number($event.target.value)"
+              />
+              <output for="cardSize">{{ cardSize }}px</output>
+            </label>
+            <fieldset class="display-mode-toggle">
+              <legend class="visually-hidden">Entry display</legend>
+              <label class="display-mode-option">
+                <input
+                  v-model="displayMode"
+                  type="radio"
+                  name="displayMode"
+                  value="card"
+                />
+                <span>
+                  <svg aria-hidden="true" viewBox="0 0 20 20">
+                    <rect x="2.5" y="2.5" width="6" height="6" rx="1" />
+                    <rect x="11.5" y="2.5" width="6" height="6" rx="1" />
+                    <rect x="2.5" y="11.5" width="6" height="6" rx="1" />
+                    <rect x="11.5" y="11.5" width="6" height="6" rx="1" />
+                  </svg>
+                  <span class="visually-hidden">Cards</span>
+                </span>
+              </label>
+              <label class="display-mode-option">
+                <input
+                  v-model="displayMode"
+                  type="radio"
+                  name="displayMode"
+                  value="list"
+                />
+                <span>
+                  <svg aria-hidden="true" viewBox="0 0 20 20">
+                    <path d="M7.5 4h10M7.5 10h10M7.5 16h10" />
+                    <circle cx="3.5" cy="4" r="1" />
+                    <circle cx="3.5" cy="10" r="1" />
+                    <circle cx="3.5" cy="16" r="1" />
+                  </svg>
+                  <span class="visually-hidden">List</span>
+                </span>
+              </label>
+            </fieldset>
           </div>
         </div>
       </div>
 
-      <div class="ports-grid">
+      <div
+        class="ports-grid"
+        :class="{ 'ports-grid-list': displayMode === 'list' }"
+        :style="{ '--card-size': `${cardSize}px` }"
+      >
         <PortCard
           v-for="port in paginatedPorts"
           :key="port.id"
           :port="port"
+          :display-mode="displayMode"
         />
       </div>
 
@@ -129,6 +192,8 @@ export default {
       ports: [],
       currentPage: 1,
       itemsPerPage: 12,
+      cardSize: 300,
+      displayMode: "card",
     };
   },
   computed: {
@@ -390,6 +455,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .entries-per-page label {
@@ -414,10 +480,109 @@ export default {
   border-color: var(--accent-primary);
 }
 
+.display-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card-size-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.card-size-control input {
+  width: 100px;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.card-size-control output {
+  min-width: 3.5em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.display-mode-toggle {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.display-mode-option {
+  position: relative;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.display-mode-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.display-mode-option > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.55rem;
+  border-radius: 5px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.display-mode-option svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.display-mode-option input:checked + span {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+.display-mode-option input:focus-visible + span {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
 .ports-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(0, min(var(--card-size), 100%)));
+  gap: 1.25rem;
+}
+
+.ports-grid-list {
+  grid-template-columns: 1fr;
 }
 
 .no-results {
@@ -505,6 +670,25 @@ export default {
 
   .ports-grid {
     grid-template-columns: 1fr;
+  }
+
+  .results-controls {
+    align-items: flex-start;
+  }
+
+  .display-controls {
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .display-controls {
+    align-items: flex-start;
+  }
+
+  .card-size-control {
+    flex-wrap: wrap;
   }
 }
 </style>
