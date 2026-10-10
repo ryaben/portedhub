@@ -2,22 +2,14 @@
   <div class="home">
     <section class="hero">
       <img src="/portedhub.png" alt="PortedHub" class="hero-logo" />
-      <p class="slogan">100% browser, 0% downloads</p>
-      <p class="entries-count">{{ totalPorts }} ports in library</p>
+      <p class="slogan">100% in-browser, 0% downloads</p>
+      <p class="entries-count">
+        {{ totalPorts }} ports in library
+        <span class="beta-label">Beta version, under construction</span>
+      </p>
       <router-link to="/library" class="cta-button"
         >Explore Library</router-link
       >
-    </section>
-
-    <section class="gallery">
-      <h2 class="section-title">Featured Ports</h2>
-      <div class="gallery-grid">
-        <PortCard
-          v-for="port in featuredPorts"
-          :key="port.id"
-          :port="port"
-        />
-      </div>
     </section>
 
     <section class="about">
@@ -34,8 +26,58 @@
           the creators who make it possible, and providing a central hub for
           gamers to discover and play these browser-based recreations.
         </p>
+        <p>
+          As of now, PortedHub is a static website that doesn't get data from
+          a database, but rather from its code itself. This might change in the
+          future. Still, you can contribute to our project by contacting us via
+          X (former Twitter) or email, and we will add your entry request if it
+          complies with the project's mission.
+        </p>
+        <p class="disclaimer">
+          All entry links lead to third-party developments. PortedHub is not responsible
+          for their content.
+        </p>
       </div>
     </section>
+
+    <section class="gallery">
+      <h2 class="section-title">Featured Ports</h2>
+      <div class="gallery-grid">
+        <PortCard
+          v-for="port in featuredPorts"
+          :key="port.id"
+          :port="port"
+        />
+      </div>
+    </section>
+
+    <footer class="home-footer">
+      <a
+        href="https://x.com/portedhub"
+        class="footer-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="PortedHub on X"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path
+            d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.4L1.8 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"
+          />
+        </svg>
+        <span>@portedhub</span>
+      </a>
+      <a
+        href="mailto:portedhub@gmail.com"
+        class="footer-link"
+        aria-label="Email PortedHub"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M3 5h18v14H3z" />
+          <path d="m3 6 9 7 9-7" />
+        </svg>
+        <span>portedhub@gmail.com</span>
+      </a>
+    </footer>
   </div>
 </template>
 
@@ -104,7 +146,7 @@ export default {
 
 .hero {
   background: var(--gradient-1);
-  padding: 8rem 2rem 6rem;
+  padding: 5rem 2rem 3rem;
   text-align: center;
   color: var(--text-primary);
   position: relative;
@@ -126,7 +168,7 @@ export default {
 
 .hero-logo {
   display: block;
-  width: min(96vw, 1100px);
+  width: min(75vw, 700px);
   height: auto;
   margin: 0 auto 1.5rem;
   filter: drop-shadow(0 0 20px rgba(255, 61, 61, 0.4));
@@ -141,6 +183,11 @@ export default {
 }
 
 .entries-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   color: var(--accent-primary);
@@ -157,6 +204,16 @@ export default {
   border-radius: 50%;
   margin-right: 0.5rem;
   animation: pulse 2s infinite;
+}
+
+.beta-label {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 @keyframes pulse {
@@ -271,6 +328,58 @@ export default {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   font-weight: 400;
+}
+
+.about-content .disclaimer {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.home-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent-primary);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.footer-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer-link:last-child svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 @media (max-width: 768px) {
